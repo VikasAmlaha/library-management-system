@@ -3,7 +3,7 @@
 A lightweight library catalog and lending system built for my college English Literature
 department, replacing a paper register with a searchable, mobile-friendly web app.
 
-🔗 **Live demo:** [your-vercel-url-here]
+🔗 **Live demo:** [https://library-management-system-psi-ivory.vercel.app/]
 
 ## Why this exists
 
