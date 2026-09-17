@@ -1,3 +1,6 @@
+/* Opt out of the browser's automatic dark-mode styling on form elements.
+   Without this, some phones render inconsistent half-dark form controls
+   because the site never explicitly declared what color scheme it supports. */
 :root {
   color-scheme: light;
 }
@@ -6,7 +9,7 @@ body {
   font-family: system-ui, sans-serif;
   background: #f4f4f2;
   margin: 0;
-  padding: 1rem;
+  padding: 1rem; /* mobile-first: smaller padding by default, widened below */
 }
 
 .container {
@@ -14,11 +17,45 @@ body {
   margin: 0 auto;
 }
 
-h1 {
-  font-size: 1.4rem;
+/* --- Letterhead: small, centered, separated by a rule line,
+   like an official header on a printed document. Deliberately kept
+   less visually prominent than <h1> so it reads as context, not the
+   page's identity — and so it doesn't push the form below the fold
+   on small phone screens. --- */
+.letterhead {
+  text-align: center;
+  padding-bottom: 0.75rem;
   margin-bottom: 1rem;
+  border-bottom: 2px solid #2f5233;
 }
 
+.college-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2f5233;
+  margin: 0 0 0.2rem;
+  line-height: 1.3;
+}
+
+.dept-name {
+  font-size: 0.8rem;
+  color: #666;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* The actual page heading — most visually prominent, since it answers
+   "what is this page." */
+h1 {
+  font-size: 1.3rem;
+  margin: 0 0 1rem;
+  color: #222;
+}
+
+/* --- Form: stacked vertically by default (mobile-first).
+   Switched to a horizontal row only on wider screens, in the
+   @media block below. --- */
 form {
   display: flex;
   flex-direction: column;
@@ -30,7 +67,8 @@ form input {
   padding: 0.7rem;
   border: 1px solid #ccc;
   border-radius: 8px;
-  font-size: 16px; /* not 1rem — prevents iOS auto-zoom on focus */
+  font-size: 16px; /* not 1rem — 16px specifically prevents iOS Safari
+                       from auto-zooming the page when a field is tapped */
   width: 100%;
   box-sizing: border-box;
 }
@@ -50,21 +88,56 @@ form button:active {
   background: #24401f;
 }
 
+.cancel-btn {
+  background: #eee;
+  color: #333;
+}
+
 ul {
   list-style: none;
   padding: 0;
 }
 
+/* Each book row: card-style, with title/author on one side and
+   Edit/Delete actions on the other. flex-wrap lets the action buttons
+   drop to their own line on very narrow screens instead of overflowing. */
 li {
   background: white;
   padding: 0.9rem 1rem;
   border-radius: 8px;
   margin-bottom: 0.5rem;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
   font-size: 0.95rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
-/* Wider screens (tablets, laptops): switch form to a row */
+.row-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.row-actions button {
+  padding: 0.4rem 0.7rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  background: #eee;
+}
+
+.delete-btn {
+  background: #f8d7da; /* soft red — visually signals a destructive action */
+  color: #842029;
+}
+
+/* --- Wider screens (tablets, laptops): switch the form from a stacked
+   column to a horizontal row. This is the "mobile-first" pattern —
+   everything above this query is the phone-first default, and this
+   block only overrides it once there's enough room. --- */
 @media (min-width: 640px) {
   body {
     padding: 2rem;
@@ -91,36 +164,4 @@ li {
     flex: 0 0 auto;
     padding: 0.7rem 1.2rem;
   }
-}
-
-li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.row-actions {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.row-actions button {
-  padding: 0.4rem 0.7rem;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  cursor: pointer;
-  background: #eee;
-}
-
-.delete-btn {
-  background: #f8d7da;
-  color: #842029;
-}
-
-.cancel-btn {
-  background: #eee;
-  color: #333;
 }
