@@ -1,16 +1,41 @@
-# React + Vite
+# 📚 Library Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight library catalog and lending system built for my college English Literature
+department, replacing a paper register with a searchable, mobile-friendly web app.
 
-Currently, two official plugins are available:
+🔗 **Live demo:** [your-vercel-url-here]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Why this exists
 
-## React Compiler
+The department library (~300 books) was tracked entirely on paper. This project digitizes
+the catalog and, eventually, the borrow/return workflow — built as a hands-on way to learn
+real-world full-stack development, not just tutorials.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech stack
 
-## Expanding the ESLint configuration
+- **Frontend:** React (Vite)
+- **Backend:** Supabase (PostgreSQL, Row Level Security, Auth)
+- **Hosting:** Vercel (CI/CD from GitHub)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Features
+
+- 📖 Add, edit, and delete books from the catalog
+- 📱 Mobile-first responsive design
+- 🔄 Real-time sync with a PostgreSQL database via Supabase
+- (in progress) Borrow/return tracking, member roles, search & filter
+
+## Running locally
+
+\`\`\`bash
+git clone https://github.com/yourusername/library-management-system.git
+cd library-management-system
+npm install
+cp .env.example .env   # then fill in your own Supabase project keys
+npm run dev
+\`\`\`
+
+## Roadmap
+
+- [ ] Search and filter by title/author
+- [ ] Borrow/return workflow with due dates
+- [ ] Member authentication and admin roles
