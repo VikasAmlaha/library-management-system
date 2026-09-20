@@ -165,3 +165,37 @@ li {
     padding: 0.7rem 1.2rem;
   }
 }
+
+@media (min-width: 640px) {
+  body {
+    padding: 2rem;
+  }
+
+  form {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .title-input {
+    flex: 2;
+  }
+
+  .author-input {
+    flex: 1.5;
+  }
+
+  .genre-input,
+  .category-input {
+    flex: 1;
+    min-width: 110px;
+  }
+
+  .copies-input {
+    flex: 0 0 70px;
+  }
+
+  form button {
+    flex: 0 0 auto;
+    padding: 0.7rem 1.2rem;
+  }
+}
